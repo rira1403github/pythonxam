@@ -1,0 +1,427 @@
+1b:
+num=input("Enter n:")
+try:
+    num=int(num)
+    rev=int(str(num)[::-1])
+    if num==rev:
+        print("Palinfrome")
+    else:
+        print("Not palindrome")
+    freq={}
+    while rev!=0:
+        dig=rev%10
+        if dig in freq:
+            freq[dig]+=1
+        else:
+            freq[dig]=1
+        rev=rev//10
+    print("Frequency of digits in number",freq)
+except:
+    print("Invalid input")
+    
+ 2a:
+def f(num):
+    if num<=1:
+        return num
+    else:
+        return f(num-1)+f(num-2)
+num=int(input("Enter n:"))
+if num<1:
+   print("N should be greater than 0")
+else:
+    for i in range(0,num):
+        print(f(i)) 
+
+
+2b:
+n=str(input("Enter a Binary Number:"))
+dec=int(n,2)
+print(dec)
+n=str(input("Enter a Octal Number:"))
+hexa=hex(int(n,8))
+print(hexa)
+
+3a:
+sent=str(input("Enter a sentence:"))
+word=len(sent.split())
+print(word)
+
+d=low=up=0
+for c in sent:
+    if c.isdigit():
+        d=d+1
+    if c.islower():
+        low=low+1
+    if c.isupper():
+        up=up+1
+print(d)
+print(low)
+print(up)
+
+3b:
+st1=input("Enter sentence 1:")
+st2=input("Enter sentence 2:")
+len1=len(st1)
+len2=len(st2)
+
+if len1>len2:
+    longest=st1
+    shortest=st2
+
+else:
+    longest=st2
+    shortest=st1
+count=0
+for i in range(len(shortest)):
+    if st1[i]==st2[i]:
+        count=count+1
+print("Ratio",str(count/len(shortest)))
+
+4a:
+n=int(input("Enter the no. of elements"))
+numlist=[]
+print("Enter the elements")
+for i in range(0,n):
+    ele=input()
+    numlist.append(ele)
+
+for i in range(1,n):
+    picked=numlist[i]
+    j=i
+    while j>0 and picked<numlist[j-1]:
+        numlist[j]=numlist[j-1]
+        j=j-1
+        numlist[j]=picked
+print(numlist)
+
+
+def merge(nlist):
+    if len(nlist)>1:
+        mid=len(nlist)//2
+        left=nlist[:mid]
+        right=nlist[mid:]
+        merge(left)
+        merge(right)
+        i=j=k=0
+
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                nlist[k] = left[i]
+                i += 1
+
+            else:
+                nlist[k] = right[j]
+                j += 1
+            k += 1
+
+        while i < len(left):
+            nlist[k] = left[i]
+            i += 1
+            k += 1
+        while j < len(right):
+            nlist[k] = right[j]
+            j += 1
+            k += 1
+
+
+n=int(input("Enter the no. of elements"))
+lst=[]
+for i in range(0,n):
+    ele=int(input())
+    lst.append(ele)
+
+merge(lst)
+print(lst)
+
+
+
+
+
+
+4b:
+def romtod(s):
+    int_value=0
+    for i in range(0,len(s)):
+     if(i>0 and d[s[i]]>d[s[i-1]]):
+        int_value=(int_value+d[s[i]])-(2*d[s[i]])
+     else:
+        int_value=int_value+d[s[i]]
+    return int_value
+
+d={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+n=input("Enter n:")
+int_value=romtod(n)   
+print(int_value)
+
+
+
+
+
+
+
+
+
+
+5a:
+
+
+
+
+
+
+5b:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6a:
+n=int(input("Enter the line:"))
+with open('6aa.text','r') as f:
+    for line in(f.readlines() [:n]):
+        print(line,end='')
+
+word=input("Enter word:")
+file=open('6aa.text','r')
+data=file.read()
+n=data.count(word)
+print(n)
+
+6b:
+import os
+from zipfile import ZipFile
+folder=input("Enter the folder name to be zipped:")
+myzip=folder+"zip"
+with ZipFile(myzip,'w') as zip_object:
+    for folder_name,sub_folders,file_name in os.walk(folder):
+        for filename in file_name:
+            filepath=os.path.join(folder_name.filename)
+            zip_object.write(filepath,os.path.basename(filepath))
+if(os.path.exists(myzip)):
+    print("Zip file created")
+else:
+    print("Zip file not created")
+
+7a:
+class shape:
+    r=l=b=h=0
+    def __init__(self,r,l,b,h):
+        self.r=r
+        self.l=l
+        self.b=b
+        self.h=h
+    def triangle(self):
+        areat=0.5*self.b*self.h
+        return areat
+    def rectangle(self):
+        arear=self.b*self.l
+        return arear
+    def circle(self):
+        areac=(3.14)*self.r*self.r
+        return areac
+r=int(input("Enter r"))
+l=int(input("Enter l"))
+h=int(input("Enter h"))
+b=int(input("Enter b"))
+c=shape(l,r,b,h)
+print(c.circle())
+print(c.rectangle())
+print(c.triangle())
+
+7b:
+class employee:
+    def __inti__(self):
+        self.name=""
+        self.empID=""
+        self.dept=""
+        self.salary=0
+    def getEmpdetails(self):
+        self.name=input("ENter name:")
+        self.empID=input("ENter empID:")
+        self.dept=input("ENter Dept:")
+        self.salary=input("ENter Salary:")
+    def showdetails(self):
+         print("Employees Details:")
+         print(self.name)
+         print(self.empID)
+         print(self.dept)
+         print(self.salary)
+    def updtsalary(self):
+        self.salary=int(input("ENter new salary:"))
+        print("Updated salary",self.salary)
+e1=employee()
+e1.getEmpdetails()
+e1.showdetails()
+e1.updtsalary()
+
+8:
+class employee:
+    def __inti__(self):
+        self.name=""
+        self.empID=""
+        self.dept=""
+        self.salary=0
+    def getEmpdetails(self):
+        self.name=input("ENter name:")
+        self.empID=input("ENter empID:")
+        self.dept=input("ENter Dept:")
+        self.salary=input("ENter Salary:")
+    def showdetails(self):
+         print("Employees Details:")
+         print(self.name)
+         print(self.empID)
+         print(self.dept)
+         print(self.salary)
+    def updtsalary(self):
+        self.salary=int(input("ENter new salary:"))
+        print("Updated salary",self.salary)
+e1=employee()
+e1.getEmpdetails()
+e1.showdetails()
+e1.updtsalary()
+
+
+
+
+9a:
+import os
+import requests
+from bs4 import BeautifulSoup
+for i in range(1,11):
+    try:
+        page=requests.get(f'https://xkcd.com/{i}/').content
+        soup=BeautifulSoup(page,'html.parser')
+        image=soup.find('div',{'id':'comic'}).img['src']
+        print(image)
+        save_directory = 'C:/Users/monet/PycharmProjects/roman/comics'  # Replace with your desired directory
+        with open(os.path.join(save_directory, image.split('/')[-1]), 'wb') as f:
+
+            f.write(requests.get('https://'+image[2:]).content)
+    except Exception:
+        continue
+
+print('Done')
+
+
+
+
+9b:
+import openpyxl
+print('opening workbook....')
+wb = openpyxl.load_workbook('marks.xlsx',data_only=True)
+sheet = wb['Book1']
+print("rows in the workbook:",sheet.max_row)
+print('reading rows......')
+for row in range(1,sheet.max_row+1):
+    USN = sheet['A'+str(row)].value
+    NAME = sheet['B' + str(row)].value
+    IAT1 = sheet['C' + str(row)].value
+    IAT2 = sheet['D' + str(row)].value
+    IAT3 = sheet['E' + str(row)].value
+    TOTAL = sheet['F' + str(row)].value
+    AVERAGE = sheet['G' + str(row)].value
+    print("%4s %12s %20s %7s %7s %7s %7s %7.2s"\
+          %(row,USN,NAME,IAT1,IAT2,IAT3,TOTAL,AVERAGE))
+row +=1
+USN = input("enter usn")
+NAME = input("enter name")
+IAT1 = int(input("enter ist1 marks"))
+IAT2 = int(input("enter iat2 marks"))
+IAT3 = int(input("enter iat3 marks"))
+TOTAL = IAT1+IAT2+IAT3/3
+AVERAGE = TOTAL/3
+sheet['A'+str(row)]=USN
+sheet['B' + str(row)]=NAME
+sheet['C' + str(row)]=IAT1
+sheet['D' + str(row)]=IAT2
+sheet['E' + str(row)]=IAT3
+sheet['F' + str(row)]=TOTAL
+sheet['G' + str(row)]=AVERAGE
+wb.save("marks.xlsx")
+wb.close()
+
+wb= openpyxl.load_workbook('marks.xlsx',data_only=True)
+sheet = wb['Book1']
+
+print('reading rows.....')
+for now in range(1,sheet.max_row+1):
+    USN = sheet['A' + str(row)].value
+    NAME = sheet['B' + str(row)].value
+    IAT1 = sheet['C' + str(row)].value
+    IAT2 = sheet['D' + str(row)].value
+    IAT3 = sheet['E' + str(row)].value
+    TOTAL = sheet['F' + str(row)].value
+    AVERAGE = sheet['G' + str(row)].value
+    print("%4s %12s %20s %7s %7s %7s %7s %7.2s" \
+          % (row, USN, NAME, IAT1, IAT2, IAT3, TOTAL, AVERAGE))
+wb.close()
+
+
+
+
+10a:
+from PyPDF2 import PdfWriter, PdfReader
+num = int(input("Enter page number you want combine from multiple documents"))
+pdf1 = open("C:\\Users\\rishabh\\Desktop\\program5.pdf", 'rb')
+pdf2 = open("C:\\Users\\rishabh\\Desktop\\download.pdf", 'rb')
+pdf_writer = PdfWriter()
+
+pdf1_reader = PdfReader(pdf1)
+page = pdf1_reader.pages[num - 1]
+pdf_writer.add_page(page)
+
+pdf2_reader = PdfReader(pdf2)
+page = pdf2_reader.pages[num - 1]
+pdf_writer.add_page(page)
+
+with open('result.pdf', 'wb') as output:
+    pdf_writer.write(output)
+
+
+
+
+
+
+
+10B program:
+#  http://api.openweathermap.org/data/2.5/weather?q=bangalore&appid=26e0824af102294158bdd0f23c9d8e10
+import requests, json
+
+# Enter your API key here
+api_key = "26e0824af102294158bdd0f23c9d8e10"
+base_url = "http://api.openweathermap.org/data/2.5/weather?"
+city_name = input("Enter city name : ")
+complete_url = base_url + "appid=" + api_key + "&q=" + city_name
+response = requests.get(complete_url)
+x = response.json()
+if x["cod"] != "404":
+    y = x["main"]
+    current_temperature = y["temp"]
+    current_pressure = y["pressure"]
+    current_humidity = y["humidity"]
+
+    # store the value of "weather"
+    # key in variable z
+    z = x["weather"]
+    weather_description = z[0]["description"]
+    print(" Temperature (in kelvin unit) = " +
+          str(current_temperature) +
+          "\n atmospheric pressure (in hPa unit) = " +
+          str(current_pressure) +
+          "\n humidity (in percentage) = " +
+          str(current_humidity) +
+          "\n description = " +
+          str(weather_description))
+
+else:
+    print(" City Not Found ")
+
